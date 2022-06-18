@@ -1,4 +1,4 @@
-import { Game } from "../../../Common/Game";
+import { Game } from "../../../Common/Game/Game";
 import { GameBoardModel } from "../../GameBoard/GameBoard.model";
 
 export class GameController {
@@ -11,7 +11,14 @@ export class GameController {
     public setGame(nextGame?: Game): void {
         if (nextGame) {
             this.gameObj = nextGame;
+            this.initGame();
+            this.gameBoardView.setGameSignature(
+                this.gameObj.getGameSignature()
+            );
         }
+    }
+    public initGame(): void {
+        this.gameObj?.initGame();
     }
     public static getInstance(): GameController {
         if (this.instance === null) {
@@ -19,4 +26,5 @@ export class GameController {
         }
         return this.instance;
     }
+
 }

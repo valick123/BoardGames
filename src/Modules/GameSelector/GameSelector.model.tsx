@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { ComponentModel } from "../../Common/ComponentModel";
-import { Game } from "../../Common/Game";
+import { Game } from "../../Common/Game/Game";
 import { SetGameCommand } from "../Controllers/GameController/Commands/setGame.command";
 import { IGameSelectorOption, IGameSelectorProps } from "./GameSelector.types";
 
@@ -31,9 +31,10 @@ export class GameSelectorModel extends ComponentModel<IGameSelectorProps> {
     public onSelectGame(gameLabel: string): void {
         const gameObj: Game | undefined = this.props
             ?.gameOptions
-            ?.find((gameOption: IGameSelectorOption): IGameSelectorOption["gameObj"] => {
+            ?.find((gameOption: IGameSelectorOption): boolean => {
                 return gameOption.label === gameLabel;
-            });
+            })
+            ?.gameObj;
         if (gameObj) {
             this.commands.setGameCommand.execute(gameObj);
         }

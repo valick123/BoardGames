@@ -1,5 +1,5 @@
 import { Command } from "../../../../Common/Command";
-import { Game } from "../../../../Common/Game";
+import { Game } from "../../../../Common/Game/Game";
 import { GameController } from "../Game.controller";
 
 export class SetGameCommand extends Command {

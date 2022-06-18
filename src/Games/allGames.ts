@@ -1,5 +1,7 @@
-import { Game } from "../Common/Game";
-import { CheckersGame } from "./Checkers.game";
+import { Game } from "../Common/Game/Game";
+import { GameSignatureDirector } from "../Common/GameSignatureBuilder/GameSignatureDirector";
+import { CheckersGame } from "./Checkers/Checkers.game";
+import { CheckersGameSignatureBuilder } from "./Checkers/CheckersGameSignatureBuilder";
 
 export interface IGame {
     label: string;
@@ -9,10 +11,16 @@ export interface IGame {
 export const allGames: IGame[] = [
     {
         label: "Шашки",
-        gameObj: CheckersGame
+        gameObj: new CheckersGame(
+            new CheckersGameSignatureBuilder(),
+            new GameSignatureDirector()
+        )
     },
     {
         label: "Шашки2",
-        gameObj: CheckersGame
+        gameObj: new CheckersGame(
+            new CheckersGameSignatureBuilder(),
+            new GameSignatureDirector()
+        )
     }
 ]

@@ -1,4 +1,4 @@
-import { Game } from "../../Common/Game";
+import { Game } from "../../Common/Game/Game";
 
 export interface IGameSelectorProps {
     label: string;
