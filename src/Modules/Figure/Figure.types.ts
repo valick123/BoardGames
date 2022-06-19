@@ -1,5 +1,6 @@
 import { FigureModel } from "./Figure.model";
 
 export interface IFigureProps {
-    model: FigureModel
+    model: FigureModel,
+    figureDecoretion: any
 }

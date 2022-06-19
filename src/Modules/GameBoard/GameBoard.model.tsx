@@ -12,15 +12,20 @@ export class GameBoardModel extends ComponentModel<IGameBoardProps> {
     }
     public setGameSignature(gameSignature: IGameSignature) {
         this.gameSignature = gameSignature;
-        this.viewRef?.current.reRender(this.gameSignature);
+        this.viewRef?.current.reRender();
     }
 
-    public drawCells(): ReactNode[] {
+    public setThemeSettings(themeSettings: any): void {
+        this.themeSettings = themeSettings;
+        this.viewRef?.current.reRender();
+    }
+
+    public drawGameBoard(): ReactNode[] {
         return this.gameSignature.cells
             ?.map((cellRow: CellModel[]) => {
                 return cellRow
                     ?.map((cell: CellModel) => {
-                        return cell.draw();
+                        return cell.draw({});
                     })
             })
     }

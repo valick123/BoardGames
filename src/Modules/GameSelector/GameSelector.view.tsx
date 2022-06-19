@@ -13,7 +13,7 @@ export function GameSelector(props: IGameSelectorProps) {
     return (
         <>
             <label
-                htmlFor=""
+                htmlFor={props.label}
             >
                 {props.label}
             </label>

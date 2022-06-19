@@ -11,10 +11,11 @@ export class FigureModel extends SelfDrawnComponent {
         this.figureColor = figureColor;
         this.figuerName = figuerName;
     }
-    public draw(): ReactNode {
+    public draw(figureDecoration: any): ReactNode {
         return (
             <Figure
                 model={this}
+                figureDecoretion={figureDecoration}
             />
         )
     }

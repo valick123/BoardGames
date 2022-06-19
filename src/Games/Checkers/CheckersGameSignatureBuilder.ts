@@ -1,9 +1,6 @@
-import { CellFactory } from "../../Common/CellFactory/CellFactory";
 import { Colors } from "../../Common/Common.types";
 import { GameSignatureBuilber } from "../../Common/GameSignatureBuilder/GameSignatureBuilder";
 import { CellModel } from "../../Modules/Cell/Cell.model";
-import { PlayerModel } from "../../Modules/Player/Player.model";
-import { CheckersFigureFactory } from "./CheckersFigureFactory";
 
 export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
     public setGameName(): void {
@@ -16,11 +13,11 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
         this.gameSignature = {
             ...this.gameSignature,
             players: [
-                new PlayerModel(
+                this.elementsFactory.playersFactory.getPlayer(
                     `${Colors.BLACK}_Player`,
                     Colors.BLACK
                 ),
-                new PlayerModel(
+                this.elementsFactory.playersFactory.getPlayer(
                     `${Colors.WHITE}_Player`,
                     Colors.WHITE
                 )
@@ -28,7 +25,6 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
         }
     }
     public setCells(): void {
-        const cellFactory: CellFactory = new CellFactory();
         const cells: CellModel[][] = [];
         const boardSize: number = 7;
         let cellCount: number = 0;
@@ -38,13 +34,13 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
                 let cell: CellModel;
                 if (rowInx % 2 === 0) {
                     cell = (cellCount % 2 === 0)
-                        ? cellFactory.getWhiteCell(
+                        ? this.elementsFactory.cellFactory.getWhiteCell(
                             {
                                 row: rowInx,
                                 col: colIdx
                             }
                         )
-                        : cellFactory.getBlackCell(
+                        : this.elementsFactory.cellFactory.getBlackCell(
                             {
                                 row: rowInx,
                                 col: colIdx
@@ -53,13 +49,13 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
                 }
                 else {
                     cell = (cellCount % 2 === 0)
-                        ? cellFactory.getBlackCell(
+                        ? this.elementsFactory.cellFactory.getBlackCell(
                             {
                                 row: rowInx,
                                 col: colIdx
                             }
                         )
-                        : cellFactory.getWhiteCell(
+                        : this.elementsFactory.cellFactory.getWhiteCell(
                             {
                                 row: rowInx,
                                 col: colIdx
@@ -78,8 +74,6 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
         }
     }
     public setFigures(): void {
-        const checkersFactory: CheckersFigureFactory = new CheckersFigureFactory();
-
         if (!this.gameSignature.cells.length) {
             this.setCells();
         }
@@ -90,12 +84,12 @@ export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
                         const { row } = cell.getCords();
                         if (row >= 0 && row <= 1) {
                             cell.setFigure(
-                                checkersFactory.getWhiteChecker()
+                                this.elementsFactory.figureFactory.getFigure(Colors.WHITE, "checker")
                             );
                         }
                         if (row >= 6 && row <= 7) {
                             cell.setFigure(
-                                checkersFactory.getBlackChecker()
+                                this.elementsFactory.figureFactory.getFigure(Colors.BLACK, "checker")
                             );
                         }
                     })

@@ -1,7 +1,13 @@
+import { ElementsFactory } from "../Factories/ElementsFactory/ElementsFactory";
 import { IGameSignature } from "../Game/Game.types";
 
 export abstract class GameSignatureBuilber {
     protected gameSignature: IGameSignature = {} as IGameSignature;
+    constructor(
+        protected elementsFactory: ElementsFactory
+    ) {
+
+    }
     public reset(): void {
         this.gameSignature = {} as IGameSignature;
     }

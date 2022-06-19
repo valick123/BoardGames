@@ -1,5 +1,4 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { IGameSignature } from "../../Common/Game/Game.types";
 import { GameBoardModel } from "./GameBoard.model"
 import { IGameBoardProps } from "./GameBoard.types";
 
@@ -7,23 +6,23 @@ export const GameBoard = forwardRef(
     function (props: IGameBoardProps) {
         const gameBoardModel: GameBoardModel = GameBoardModel.getInstance();
         gameBoardModel.setProps(props);
-        const [gameSignature, setGameSignature] = useState<IGameSignature>()
+        const [reRenderCounter, setReRenderCounter] = useState<number>(0)
         const selfRef = useRef<any>();
 
         useImperativeHandle(selfRef as any, () => ({
-            reRender(gameSignature: IGameSignature) {
-                setGameSignature(gameSignature);
+            reRender() {
+                setReRenderCounter((prevCounter) => prevCounter + 1);
             }
         }))
 
         useEffect(() => {
             console.log("render")
-        }, [gameSignature])
+        }, [reRenderCounter])
         gameBoardModel.setViewRef(selfRef);
         return (
             <>
                 {
-                    gameBoardModel.drawCells()
+                    gameBoardModel.drawGameBoard()
                 }
             </>
         )

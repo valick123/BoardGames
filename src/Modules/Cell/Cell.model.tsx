@@ -20,10 +20,11 @@ export class CellModel extends SelfDrawnComponent {
     public getCords(): ICellCords {
         return this.cords;
     }
-    public draw(): ReactNode {
+    public draw(cellDecoration: any): ReactNode {
         return (
             <Cell
                 model={this}
+                cellDecoration={cellDecoration}
             />
         )
     }
