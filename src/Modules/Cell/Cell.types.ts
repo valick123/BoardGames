@@ -5,7 +5,3 @@ export interface ICellProps {
     cellDecoration: any
 }
 
-export interface ICellCords {
-    row: number;
-    col: number;
-}

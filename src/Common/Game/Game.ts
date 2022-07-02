@@ -1,9 +1,10 @@
 import { GameSignatureBuilber } from "../GameSignatureBuilder/GameSignatureBuilder";
 import { GameSignatureDirector } from "../GameSignatureBuilder/GameSignatureDirector";
-import { IGameSignature } from "./Game.types";
+import { IGameScheme, IGameSignature } from "./Game.types";
 
 export abstract class Game {
     protected gameSignature: IGameSignature = {} as IGameSignature;
+    protected gameInitialScheme: IGameScheme = {} as IGameScheme;
     constructor(
         protected gameSignatureBuilder: GameSignatureBuilber,
         protected gameSignatureDirector: GameSignatureDirector
@@ -11,7 +12,7 @@ export abstract class Game {
         this.gameSignatureDirector.setBuilder(this.gameSignatureBuilder);
     }
     public initGame(): void {
-        this.gameSignatureDirector?.createGameSignature();
+        this.gameSignatureDirector?.createGameSignature(this.gameInitialScheme);
         this.gameSignature = this.gameSignatureBuilder?.getGameSignature()
     }
     public getGameSignature(): IGameSignature {

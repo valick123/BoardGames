@@ -1,24 +1,25 @@
 import { ReactNode } from "react";
 import { Colors } from "../../Common/Common.types";
+import { ICellCords } from "../../Common/Game/Game.types";
 import { SelfDrawnComponent } from "../../Common/SelfDrawnComponent";
 import { FigureModel } from "../Figure/Figure.model";
-import { ICellCords } from "./Cell.types";
 import { Cell } from "./Cell.view";
 
 export class CellModel extends SelfDrawnComponent {
     protected cellColor: Colors;
-    protected cellFigure: FigureModel | null = null;
-    protected cords: ICellCords;
-    constructor(cellColor: Colors, cords: ICellCords) {
+    protected cellFigure: FigureModel | null;
+    protected cellCords: ICellCords;
+    constructor(color: Colors, cords: ICellCords, figure: FigureModel | null) {
         super();
-        this.cellColor = cellColor;
-        this.cords = cords;
+        this.cellColor = color;
+        this.cellCords = cords;
+        this.cellFigure = figure;
     }
     public setFigure(cellFigure: FigureModel): void {
         this.cellFigure = cellFigure;
     }
     public getCords(): ICellCords {
-        return this.cords;
+        return this.cellCords;
     }
     public draw(cellDecoration: any): ReactNode {
         return (

@@ -1,18 +1,14 @@
 import { CellModel } from "../../../Modules/Cell/Cell.model";
-import { ICellCords } from "../../../Modules/Cell/Cell.types";
+import { FigureModel } from "../../../Modules/Figure/Figure.model";
 import { Colors } from "../../Common.types";
+import { ICellCords } from "../../Game/Game.types";
 
 export class CellFactory {
-    public getBlackCell(cords: ICellCords): CellModel {
+    public getCell(cellColor: Colors, cellCords: ICellCords, cellFigure: FigureModel | null): CellModel {
         return new CellModel(
-            Colors.BLACK,
-            cords
-        );
-    }
-    public getWhiteCell(cords: ICellCords): CellModel {
-        return new CellModel(
-            Colors.WHITE,
-            cords
+            cellColor,
+            cellCords,
+            cellFigure
         );
     }
 }

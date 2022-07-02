@@ -6,3 +6,29 @@ export interface IGameSignature {
     players: PlayerModel[];
     cells: CellModel[][];
 }
+
+export interface IGameScheme {
+    players: IPlayer[];
+    cells: ICell[][];
+    gameName: string;
+}
+
+export interface IPlayer {
+    name: string;
+    figureColor: string;
+}
+
+export interface ICell {
+    cords: ICellCords;
+    figure: IFigure | null;
+    color: string;
+}
+
+interface IFigure {
+    figureColor: string;
+    figureName: string;
+}
+export interface ICellCords {
+    row: number;
+    col: number;
+}
