@@ -2,7 +2,10 @@ import { IGameScheme } from "../Game/Game.types";
 import { GameSignatureBuilber } from "./GameSignatureBuilder";
 
 export class GameSignatureDirector {
-    protected builder: GameSignatureBuilber | null = null;
+    protected builder: GameSignatureBuilber;
+    constructor(builder: GameSignatureBuilber) {
+        this.builder = builder;
+    }
     public setBuilder(builder: GameSignatureBuilber): void {
         this.builder = builder;
     }

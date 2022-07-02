@@ -16,7 +16,7 @@ export const SignatureBuilder: CheckersGameSignatureBuilder = new CheckersGameSi
     CheckersElementsFatory
 )
 
-export const SignatureDirector: GameSignatureDirector = new GameSignatureDirector();
+export const SignatureDirector: GameSignatureDirector = new GameSignatureDirector(SignatureBuilder);
 export const CheckersGameObj: CheckersGame = new CheckersGame(
     SignatureBuilder,
     SignatureDirector

@@ -12,6 +12,7 @@ export class GameBoardModel extends ComponentModel<IGameBoardProps> {
     }
     public setGameSignature(gameSignature: IGameSignature) {
         this.gameSignature = gameSignature;
+        console.log(this.gameSignature);
         this.viewRef?.current.reRender();
     }
 

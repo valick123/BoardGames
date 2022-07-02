@@ -7,7 +7,6 @@ import { PlayerModel } from "../../../Modules/Player/Player.model";
 
 export class CheckersGameSignatureBuilder extends GameSignatureBuilber {
     public setGameName(): void {
-        console.log(this.gameScheme)
         this.gameSignature = {
             ...this.gameSignature,
             gameName: this.gameScheme.gameName

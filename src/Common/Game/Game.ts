@@ -8,12 +8,10 @@ export abstract class Game {
     constructor(
         protected gameSignatureBuilder: GameSignatureBuilber,
         protected gameSignatureDirector: GameSignatureDirector
-    ) {
-        this.gameSignatureDirector.setBuilder(this.gameSignatureBuilder);
-    }
+    ) { }
     public initGame(): void {
         this.gameSignatureDirector?.createGameSignature(this.gameInitialScheme);
-        this.gameSignature = this.gameSignatureBuilder?.getGameSignature()
+        this.gameSignature = this.gameSignatureBuilder?.getGameSignature();
     }
     public getGameSignature(): IGameSignature {
         return this.gameSignature;
